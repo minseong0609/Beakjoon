@@ -2,22 +2,18 @@ from collections import deque
 
 def dfs (graph, root):
     visited = []
-    stack = [root]
-
-    while stack:
-
-        n = stack.pop()
+    dfs_que = deque([root])
+    while dfs_que:
+        n = dfs_que.pop()
         if n not in visited:
-
             visited.append(n)
-
             if n in graph:
-                temp = list(set(graph[n]) - set(visited))
+
+                temp = list( set(graph[n])-set(visited) )
                 temp.sort(reverse=True)
-                stack += temp
+                dfs_que += temp
 
     return " ".join(str(i) for i in visited)
-
 
 def bfs (graph, root):
     visited = []
